@@ -1,4 +1,4 @@
-# TypeScript
+# TypeScript Types
 
 Use TypeScript's type system deliberately as part of the architecture and
 developer experience.

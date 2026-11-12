@@ -27,7 +27,7 @@ listener, external store, hydration workflow, or disposable resource, read
 ## Observable Cores
 
 When adding, changing, or reviewing imperative models whose observable state is
-consumed by React, read [observable cores](../observable-cores.md).
+consumed by React, read [observable cores](../../observable-cores.md).
 
 ## Optimization
 

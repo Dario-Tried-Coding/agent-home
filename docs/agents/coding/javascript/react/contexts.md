@@ -66,7 +66,7 @@ export function useEditor_Context() {
 
 The example's `documentId: null` is a valid value under the Provider, not a
 missing Provider. Keep the guard and successful return together as described in
-[readability](../code-quality/typescript-readability.md#guards-and-returns).
+[readability](../typescript/readability.md#guards-and-returns).
 
 For Context value identity and reactive updates, follow
 [rendering subscriptions](optimization/rendering/subscriptions.md#context-and-core-handles).

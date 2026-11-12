@@ -3,7 +3,7 @@
 Read this when React owns an imperative object or external subscription.
 
 For the engine's operational boundary and resource ownership, read
-[Stateful engines](../stateful-engines.md). This reference defines how React
+[Stateful engines](../../stateful-engines.md). This reference defines how React
 owns and mounts that engine.
 
 ## Own Imperative Objects In Effects

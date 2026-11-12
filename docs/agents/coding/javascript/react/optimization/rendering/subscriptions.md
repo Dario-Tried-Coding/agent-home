@@ -86,18 +86,12 @@ the store; local state resets remain explicit in the consumer.
 
 ## Library Integration
 
-Build on TanStack Store and Zustand's subscription and selection capabilities.
-Keep application integration focused on source adaptation and the conventions
-specified here, rather than maintaining another selection cache or subscription
-engine. Prefer TanStack Store for new store-based capabilities; keep migrations
-of existing Zustand or external-store models explicit and scoped.
+Build on the source library's subscription and selection capabilities. Keep
+application integration focused on source adaptation and reuse the project's
+shared selector entry point. Keep store-library migrations explicit and scoped.
 
-Within each app or package source tree, use
-`react/state/selectors/useSelector.ts` as the common selector entrypoint for
-TanStack and migrated external stores. Delegate to TanStack's native
-`useSelector`, adapting optional sources and legacy `getSnapshot`/unsubscribe
-contracts with stable adapter identity. Keep snapshots referentially stable while the underlying value
-is unchanged. Preserve the library's server-rendering and hydration contracts.
+When integrating TanStack Store or adapting a compatible external store to it,
+follow the [TanStack Store guidance](../../../tanstack-store.md).
 
 Existing Zustand integrations can retain their library implementation while
 exposing the same selector and options conventions. Aligning a hook's signature
@@ -116,18 +110,17 @@ const selection = useSelector(core.store, selector, {
 
 ## Equality Policy
 
-Selector-based React subscriptions should default to `shallow` from
-`zustand/shallow`, even when the source is not a Zustand store. Use `Object.is`
-only for intentionally primitive-only APIs or explicit identity semantics.
+Use the project's shared equality policy. When its selector API returns shallow
+projections by default, `shallow` from `zustand/shallow` is one implementation.
+Use `Object.is` for APIs whose values require primitive or identity semantics.
 
 Allow callers to provide a custom equality function when `shallow` is not
 specific enough. Use custom equality for recurring derived shapes such as arrays
 of objects, domain-specific snapshots, maps, sets, or normalized structures.
 
-Keep reusable comparisons beside the common selector in
-`react/state/selectors/equality-fns.ts`. Before adding a local comparison, check
+Keep reusable comparisons beside the common selector. Before adding one, check
 whether the shared module already handles that shape. Add generally useful
-comparisons there instead of leaving them embedded in one component.
+comparisons to that module.
 
 ```tsx
 const rows = useSelector(store, (state) => state.rows, {
@@ -149,11 +142,11 @@ removing feature entrypoints solely because they delegate to a library hook.
 When a derived convenience hook returns an array or object, choose an equality
 that matches the returned shape.
 
-Place required identifying inputs first, then the selector, then an optional
-options object. Use `compare` for the optional comparison and default it to
-`shallow`. Feature options extend the common selector options with concerns such
-as `adapterIp`; the feature consumes those concerns before delegating. This keeps
-selection, inference and comparisons consistent across source libraries.
+Follow the project's selector signature. When defining a new shared signature,
+put identifying inputs first, then the selector, then optional options. In the
+example below `compare` carries an optional equality function. Feature options
+can add a concern such as a source identifier, which the feature consumes before
+delegating to the common selector.
 
 Export `SelectorOptions<T>` from the common selector so feature hooks can extend
 its options without redeclaring the comparison contract:
@@ -191,8 +184,8 @@ When reviewing render-sensitive code, inspect each subscription:
   snapshot subscription.
 - Add or expose an equality option when the selected value is not primitive or
   identity-stable.
-- Default selector equality to `shallow`; use a custom equality when `shallow`
-  is too broad or too narrow.
+- Use the shared equality policy. Choose a custom comparison when the default
+  is too broad or too narrow for the selected shape.
 - Prefer a feature-level subscription surface before changing many consumers
   directly.
 

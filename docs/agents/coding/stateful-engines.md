@@ -80,6 +80,31 @@ class Change_Buffer {
 }
 ```
 
+When callers can record and drain concurrently, make both operations use the
+same synchronization boundary. In this Java example, draining takes the
+snapshot and clears the collection while holding the same lock used to record a
+key. A key recorded after the drain stays pending for the next one.
+
+```java
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+final class ChangeBuffer {
+    private final Set<String> pending = new LinkedHashSet<>();
+
+    synchronized void record(String key) {
+        pending.add(key);
+    }
+
+    synchronized List<String> drain() {
+        List<String> keys = List.copyOf(pending);
+        pending.clear();
+        return keys;
+    }
+}
+```
+
 ## Review The Engine And Its Consumers
 
 For each changed engine, identify its state and resource owners, intended

@@ -21,7 +21,7 @@ a preferred number of files or levels.
 When ownership changes, reassess the model, lifecycle, name, location, consumers,
 and tests together; preserving behavior alone does not justify retaining a
 layout that describes the previous ownership. For state and resource ownership,
-read [Stateful engines](../stateful-engines.md).
+read [Stateful engines](stateful-engines.md).
 
 ## Abstractions And Local Construction
 
@@ -123,7 +123,7 @@ operations with simple inputs, and keep service dependencies with their owner.
 ## Construction And Readiness
 
 For instance initialization, activation phases, and resource lifecycle, read
-[Stateful engines](../stateful-engines.md).
+[Stateful engines](stateful-engines.md).
 
 ## Visible Decisions
 

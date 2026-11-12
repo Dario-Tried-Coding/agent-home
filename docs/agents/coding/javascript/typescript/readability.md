@@ -1,5 +1,12 @@
 # TypeScript Readability
 
+## Operations That Extend An API
+
+When a helper exists solely to extend a callable API, expose it through that
+API's namespace where the codebase uses that pattern. For an object API, use
+methods on the owning object. Give helpers with their own responsibility an
+independent owner.
+
 ## Conditional Local Values
 
 Use a simple expression, including a straightforward ternary, when it clearly

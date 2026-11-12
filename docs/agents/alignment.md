@@ -57,7 +57,7 @@ names, contracts, and test locations against the conventions established above.
 
 For each proposed abstraction or mechanism, compare a concrete direct
 implementation and using or extending an existing capability with introducing
-another one. Apply the [readability criteria](coding/code-quality/readability.md#abstractions-and-local-construction)
+another one. Apply the [readability criteria](coding/readability.md#abstractions-and-local-construction)
 to identify what responsibility, guarantee, or reduction in complexity the
 addition provides, including its effects on configuration and maintenance.
 Scripts, test runners, build wrappers, and configuration loaders are examples,

@@ -4,7 +4,7 @@
 - When authoring agent-facing guidance, follow [authoring](docs/agents/authoring.md). When setting up a scope or changing its boundary, read [scope ownership and setup](docs/agents/scopes.md).
 - When implementing, reorganizing, or reviewing code, read the [coding standards](CODING_STANDARDS.md).
 - When committing work or refining a commit made in the current task, read [versioning](docs/agents/versioning.md).
-- When changing or adopting UAP shared contracts or catalogs, read the [shared-resource workflow](docs/agents/uap-shared-resources.md).
+- When initializing, updating, or changing a Git submodule, read [Git submodules](docs/agents/git-submodules.md).
 - When interpreting or changing the vocabulary of Agent Home, read [the glossary](GLOSSARY.md).
 
 ## Agent Skills
