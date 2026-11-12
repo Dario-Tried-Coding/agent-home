@@ -35,3 +35,17 @@ Include `CODING_STANDARDS.md` when the scope owns coding conventions. Add `docs/
 When a document's scope has a parent in the same repository, open with a link to the corresponding parent document or to the parent's `AGENTS.md` if there is no counterpart. In a nested `CLAUDE.md`, put this parent link before the `@AGENTS.md` import.
 
 Verify the setup by starting at each supported entry file. Confirm that every required reference exists and that its trigger identifies the tasks that require it. From a standalone checkout, verify that project-specific guidance is reachable within the checkout. From Agent Home, verify that routing reaches the entry directory in the intended checkout and then the applicable nested scopes.
+
+## Shared Resources And Generated Artifacts
+
+If a configured scope consumes shared resources or uses generated artifacts,
+make its local workflow reachable from that scope's entry files.
+
+- For code changes, link to the workflow from `CODING_STANDARDS.md`, or from
+  `AGENTS.md` when the scope has no coding standards.
+- For setup or adoption of a shared input, add a trigger in `AGENTS.md` when the
+  scope owns that workflow.
+
+Follow the documentation guidance for [shared resources](coding/shared-resources.md)
+and [generated artifacts](coding/generated-artifacts.md), as applicable. If
+adoption and generation form one workflow, link to one local guide.
