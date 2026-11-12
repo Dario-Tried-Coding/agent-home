@@ -31,7 +31,10 @@ wrappers, to the observable effect. Inspect tests at that boundary. For edits
 without public-contract changes, the surrounding module may provide enough
 evidence.
 
-When the user establishes a reusable convention, record it using the
+When comparing implementations reveals a recurring pattern that would guide
+future decisions, propose documenting it. Name the reference implementation,
+the scope, and the decision the convention would clarify. When the user
+adopts or establishes a reusable convention, record it using the
 [codebase pattern authoring guidance](authoring.md#codebase-patterns).
 
 Inspect existing tools, libraries, and extension points that could serve the
