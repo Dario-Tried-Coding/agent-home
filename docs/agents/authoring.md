@@ -36,6 +36,19 @@ Describe the recurring requirements and cite a reference implementation. Keep
 feature-specific decisions with their spec or ADR. Use the type system or a
 focused automated check for requirements that can be verified mechanically.
 
+## Explain Structure And Flow
+
+Use `writing-for-agents` to organize agent-facing guidance and make its
+requirements checkable. When the guide explains file layout, component
+ownership, control flow, or lifecycle, use `show-me` to choose the smallest
+useful sketch. Use a shallow file tree for layout, a call tree for lifecycle,
+or pseudocode for conditional logic.
+
+Keep rules and exceptions next to the sketch they qualify. Use code references
+where the reader needs to inspect a reference implementation. In sketches,
+prefer paths relative to a stated root or an alias defined by the project,
+such as `@/` in HMI. Keep Markdown links for routing between guides.
+
 ## Verify The Guidance
 
 Before finishing, follow the affected routes from their entry files to each
