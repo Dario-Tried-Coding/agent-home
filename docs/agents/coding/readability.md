@@ -66,8 +66,10 @@ helpers with an independent responsibility or boundary independently owned.
 
 ## Names Label Concepts
 
-Follow the feature's established naming family. Use ownership and descriptive
-names to expose conceptual levels.
+Follow the feature's established naming family. In compound names, make the
+conceptual levels visible through meaningful parts, such as the subject,
+its specialization, and its role. Use the language and codebase conventions to
+express those levels.
 
 When the subject alone leaves an object's responsibility unclear, include its
 role in the type name. Use short local names when the scope identifies the
@@ -141,9 +143,11 @@ every statement; formatting tools do not establish these semantic boundaries.
 
 ## Tests
 
-Follow the project test layout for the responsibility under test. Verify
-interactions between child responsibilities at their composition boundary. Keep fixtures local to their tests; give
-genuinely shared fixtures an explicit home at their common scope. File movement
+Place a `tests/` directory beside the implementation it verifies. Where the
+project uses a separate test source tree, mirror the implementation's ownership
+in that tree. Verify interactions between child responsibilities at their
+composition boundary. Keep fixtures local to their tests and give shared
+fixtures an explicit home at their common scope. File movement
 alone is not a reason to duplicate behavioral coverage.
 
 Test behavior, state shape, invariants, and domain outcomes. Avoid tests whose

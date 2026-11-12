@@ -2,7 +2,15 @@
 
 ## Ownership
 
-Keep each instruction in the narrowest scope that covers every place where it applies.
+Keep each item of scope setup in the narrowest scope that covers all the
+places where it applies. Apply this to entry-file instructions and pointers,
+coding standards, glossary terms, ADRs, and supporting references.
+
+When setting up or reorganizing a scope, check ownership item by item. Move
+a shared rule or rationale to its common scope and keep project decisions,
+examples, and references with the code or workflow they describe.
+For the rationale behind this layout, read the
+[scope ownership decision](../adr/0001-scope-ownership.md).
 
 - **Agent Home scope.** Personal working agreements and reusable guidance. Route technology-specific guidance by its applicability. For example, a React convention that applies across projects belongs here even when its first consumer is a single app.
 - **Repository scope.** Guidance that applies across one work repository, such as its workspace conventions or a React convention shared by its apps.
@@ -18,7 +26,11 @@ Each configured scope has three files at its root.
 - `CLAUDE.md` imports `@AGENTS.md` from the same directory.
 - `GLOSSARY.md` defines vocabulary owned by the scope.
 
-Include `CODING_STANDARDS.md` when the scope owns coding conventions. Add `docs/agents/` and `docs/adr/` when the scope has guidance or decisions to record.
+When setting up or reviewing a scope, consider which decisions it owns and
+which are worth recording. Add an ADR under `docs/adr/` for each decision that
+needs a durable explanation.
+
+Include `CODING_STANDARDS.md` when the scope owns coding conventions. Add `docs/agents/` when the scope has guidance to record.
 
 When a document's scope has a parent in the same repository, open with a link to the corresponding parent document or to the parent's `AGENTS.md` if there is no counterpart. In a nested `CLAUDE.md`, put this parent link before the `@AGENTS.md` import.
 

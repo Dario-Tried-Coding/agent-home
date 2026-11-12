@@ -86,12 +86,17 @@ the store; local state resets remain explicit in the consumer.
 
 ## Library Integration
 
+When consuming an imperative core with selectors, start with the
+[observable core defaults](../../observable-cores/observable-cores.md).
+
 Build on the source library's subscription and selection capabilities. Keep
-application integration focused on source adaptation and reuse the project's
-shared selector entry point. Keep store-library migrations explicit and scoped.
+application integration focused on source adaptation. Use
+`react/state/selectors/useSelector.ts` as the shared selector entry in each
+app or package source tree that needs it. Use the corresponding extension in
+JavaScript projects.
 
 When integrating TanStack Store or adapting a compatible external store to it,
-follow the [TanStack Store guidance](../../../tanstack-store.md).
+follow the [TanStack Store guidance](../../observable-cores/tanstack-store.md).
 
 Existing Zustand integrations can retain their library implementation while
 exposing the same selector and options conventions. Aligning a hook's signature
@@ -110,17 +115,17 @@ const selection = useSelector(core.store, selector, {
 
 ## Equality Policy
 
-Use the project's shared equality policy. When its selector API returns shallow
-projections by default, `shallow` from `zustand/shallow` is one implementation.
-Use `Object.is` for APIs whose values require primitive or identity semantics.
+Default to `shallow` from `zustand/shallow` for shared selector APIs,
+including when the source is a TanStack or external store. Use `Object.is` for
+intentionally primitive-only APIs or explicit identity semantics.
 
 Allow callers to provide a custom equality function when `shallow` is not
 specific enough. Use custom equality for recurring derived shapes such as arrays
 of objects, domain-specific snapshots, maps, sets, or normalized structures.
 
-Keep reusable comparisons beside the common selector. Before adding one, check
-whether the shared module already handles that shape. Add generally useful
-comparisons to that module.
+Keep reusable comparisons in `react/state/selectors/equality-fns.ts`,
+beside the common selector. Use the corresponding extension in JavaScript
+projects. Check that module for an existing comparison before adding one.
 
 ```tsx
 const rows = useSelector(store, (state) => state.rows, {
@@ -142,11 +147,10 @@ removing feature entrypoints solely because they delegate to a library hook.
 When a derived convenience hook returns an array or object, choose an equality
 that matches the returned shape.
 
-Follow the project's selector signature. When defining a new shared signature,
-put identifying inputs first, then the selector, then optional options. In the
-example below `compare` carries an optional equality function. Feature options
-can add a concern such as a source identifier, which the feature consumes before
-delegating to the common selector.
+For shared selector APIs, put identifying inputs first, then the selector,
+then the optional options object. Use `compare` for an equality override.
+Feature options can add a concern such as a source identifier, which the
+feature consumes before delegating to the common selector.
 
 Export `SelectorOptions<T>` from the common selector so feature hooks can extend
 its options without redeclaring the comparison contract:
@@ -184,8 +188,8 @@ When reviewing render-sensitive code, inspect each subscription:
   snapshot subscription.
 - Add or expose an equality option when the selected value is not primitive or
   identity-stable.
-- Use the shared equality policy. Choose a custom comparison when the default
-  is too broad or too narrow for the selected shape.
+- Use `shallow` as the shared default. Choose a custom comparison when the
+  default is too broad or too narrow for the selected shape.
 - Prefer a feature-level subscription surface before changing many consumers
   directly.
 

@@ -1,7 +1,11 @@
 # TanStack Store
 
+Use TanStack Store by default for the public store of a new imperative core
+that supplies observable state to React. Scope migrations of existing Zustand
+and external stores explicitly.
+
 For a new observable core that uses TanStack Store, expose its public store
-as `store`. Follow [observable cores](../observable-cores.md) for the
+as `store`. Follow [observable core contracts](../../../observable-cores.md) for the
 observation contract and the relationship between the machine and its
 public snapshot.
 

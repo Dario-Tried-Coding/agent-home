@@ -8,4 +8,4 @@ Use a descriptive kebab-case filename for each reference. Start a topic with one
 
 Point agents to the current source for values already visible in manifests, configuration, and code. Document conventions and reasons that cannot be discovered from those sources. Use examples that illustrate the rule independently of today's file layout.
 
-Before finishing, follow the affected routes from their entry files and verify every new or moved reference. Update incoming links when a reference moves. Check that each instruction applies across its owning scope and that each topic's trigger identifies when to read it.
+Before finishing, follow the affected routes from their entry files and verify every new or moved reference. Update incoming links when a reference moves. Check the scope of each instruction, term, decision, and reference against [scope ownership](scopes.md#ownership). Verify that each topic's trigger identifies when to read it.

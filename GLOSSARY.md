@@ -46,7 +46,7 @@ The selection of a directory, its checkout when applicable, and the guidance for
 
 **Scope setup**
 
-The entry files, glossary, and linked guidance required to enter and work in a scope.
+The entry files, glossary, and applicable guidance and decision records that support working within a scope.
 
 **Configured scope**
 

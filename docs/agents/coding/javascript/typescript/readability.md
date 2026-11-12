@@ -1,5 +1,11 @@
 # TypeScript Readability
 
+## Names And Conceptual Levels
+
+Keep established exported naming families consistent. When introducing a new
+family, separate conceptual levels with underscores, as in
+`Feature_Target_Projection_State` and `getFeature_Target_Projection`.
+
 ## Operations That Extend An API
 
 When a helper exists solely to extend a callable API, expose it through that

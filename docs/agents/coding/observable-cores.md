@@ -1,5 +1,10 @@
 # Observable Cores
 
+When a JavaScript or TypeScript core owns a workflow, follow the
+[XState guidance](javascript/xstate.md). When the core supplies observable
+state to React, also read the
+[React observable core defaults](javascript/react/observable-cores/observable-cores.md).
+
 ## Public Interface And State Ownership
 
 Keep the core's own interface for commands, observation, and lifecycle. Preserve
@@ -11,9 +16,7 @@ contract. The machine owns workflow transitions and the public store projects
 its snapshot. Keep unrelated core state with its own owner.
 
 Model the decisions the core owns. Receiving a mode or target selected by another
-owner does not transfer ownership of that selection to this core. Keep meaningful
-states, events, guards, and operation lifecycles visible in the machine; named
-actions and actors implement the work behind them.
+owner does not transfer ownership of that selection to this core.
 
 ## Stable Identity And Observation
 

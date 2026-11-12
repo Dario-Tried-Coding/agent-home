@@ -2,18 +2,21 @@
 
 ## Workflow Modeling
 
-Prefer XState for core workflows whose states, events, and decisions benefit from
-visual inspection and editing. Visual comprehension is a design goal even for a
-small interaction; asynchronous complexity is not the only reason to use a
-machine. Keep calculations, transformations, and simple local affordances direct
-when a workflow model would add little clarity.
+Read the [XState decision](../../../adr/0002-use-xstate-for-imperative-workflows.md)
+when choosing a workflow model or revisiting the trade-off.
 
-Apply this choice to new workflows and substantial redesigns. Keep an incidental
-change scoped to its purpose rather than automatically migrating its whole core.
+Use XState by default when introducing or substantially redesigning a
+stateful workflow, including workflows owned by imperative cores. Visual
+comprehension can justify a machine even for a small interaction. Keep simple
+calculations and transformations direct. Scope migrations of existing
+workflows explicitly.
+
+Keep meaningful states, events, guards, and operation lifecycles visible in
+the machine. Use named actions and actors for the work they trigger.
 
 ## Core Integration
 
-Read [observable cores](../observable-cores.md) for the public command,
+Read [observable core contracts](../observable-cores.md) for the public command,
 snapshot, and lifecycle contracts. Adapt commands to machine events
 internally so consumers can use the core through its own interface.
 
