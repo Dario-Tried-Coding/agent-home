@@ -6,6 +6,7 @@ Copy this file to `workspace.local.md` and fill in the locations available on th
 
 ### example-project
 
+- Alias `Project` (optional)
 - Base directory `../example-project`
 - Entry directory `SC` when a configured scope is available
 - Issue tracker and triage mapping, if configured locally

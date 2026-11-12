@@ -2,6 +2,10 @@
 
 Read `workspace.local.md` to resolve a target name to a directory. Use `workspace.example.md` as a starting point for a new machine. Resolve relative paths from the Agent Home root.
 
+A work directory can have an optional alias. Match either its entry name or its
+alias when resolving a task. If the name or alias matches multiple entries, ask
+which directory to use.
+
 When the user supplies a directory path, use it directly. If a named directory has no local mapping and its path is unclear, ask for the path.
 
 A work directory records its base directory and can specify an entry directory relative to that base. For a Git repository, the base is the primary checkout. A reference directory only needs its location and can also be the target of an explicit task. Follow any applicable project guidance you find in either kind of directory. Add or change its scope setup when the task includes that work.
