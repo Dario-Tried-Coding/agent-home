@@ -31,6 +31,9 @@ wrappers, to the observable effect. Inspect tests at that boundary. For edits
 without public-contract changes, the surrounding module may provide enough
 evidence.
 
+When the user establishes a reusable convention, record it using the
+[codebase pattern authoring guidance](authoring.md#codebase-patterns).
+
 Inspect existing tools, libraries, and extension points that could serve the
 responsibility before proposing a new mechanism.
 
@@ -104,6 +107,10 @@ Inspect the final diff, including added paths and exported definitions. Compare
 it with the applicable standards and representative examples, even if the
 functional checks are green. Account for every new module and every added or
 changed public contract; assess internal code where its shape affects clarity.
+
+When reviewing an addition to an existing family, cite the reference
+implementation, identify the parts compared, and explain any differences
+required by the feature.
 
 In review, treat the author's rationale as a hypothesis to verify against the
 code and standards. Independently verify each trace established in
