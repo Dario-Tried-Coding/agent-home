@@ -1,7 +1,7 @@
 # React State And Shape
 
 Read this when writing or reviewing React state ownership, component props and
-forwarding, or component shape.
+forwarding, component shape, or hook placement.
 
 ## Component Props
 
@@ -27,6 +27,13 @@ For providers, fragments, portals, or components with multiple roots, define a
 meaningful target or slot contract when callers need attributes. Keep the
 rendered structure appropriate to the UI rather than adding a wrapper solely
 to provide a forwarding destination.
+
+## Component-Local Hooks
+
+Keep a hook private in the component file when its job is to organize that
+component's logic and its lifecycle follows the component. Give the hook its
+own module when it owns an independent responsibility or serves multiple
+callers.
 
 ## State Management
 

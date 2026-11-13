@@ -10,8 +10,8 @@ When writing or reviewing React rendering, including tests and fixtures, read
 ## State And Shape
 
 When choosing state ownership, defining or changing component props and
-forwarding, changing component shape, or deciding how React should adapt domain
-state to rendering, read [state and shape](state-and-shape.md).
+forwarding, changing component shape, deciding where to define a hook, or deciding how
+React should adapt domain state to rendering, read [state and shape](state-and-shape.md).
 
 ## Contexts
 

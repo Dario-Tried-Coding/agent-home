@@ -129,6 +129,10 @@ For instance initialization, activation phases, and resource lifecycle, read
 
 ## Visible Decisions
 
+Prefer an early return when it isolates a simple case and makes the remaining
+flow easier to follow. In review, trace each path and verify that it performs
+its required effects in the intended order before exiting.
+
 Make meaningful evaluation stages visible through control flow and intermediate
 names. Validation, live command execution, and persistence answer different
 questions even when they contribute to one operation. A reader should see
