@@ -61,6 +61,11 @@ Identify the responsibilities being introduced or changed, their owners, the
 dependencies they need, and how consumers reach them. Choose paths, exported
 names, contracts, and test locations against the conventions established above.
 
+For each responsibility you add or change, check where it belongs. Consider
+keeping it in the code you are editing, placing it in another existing module,
+or giving it a dedicated module, where those options are plausible. Choose
+based on who owns the behavior and how callers reach it.
+
 For each proposed abstraction or mechanism, compare a concrete direct
 implementation and using or extending an existing capability with introducing
 another one. Apply the [readability criteria](coding/readability.md#abstractions-and-local-construction)
@@ -69,14 +74,19 @@ addition provides, including its effects on configuration and maintenance.
 Scripts, test runners, build wrappers, and configuration loaders are examples,
 not an exhaustive list.
 
+When a solution being phased out still serves consumers, consider proposing
+deprecation or temporary isolation. Identify who still depends on it and what
+must happen before it can be removed.
+
 Resolve routine choices autonomously from the available evidence. Seek user
 input when conflicting requirements or a consequential new choice cannot be
 resolved within existing authorization. An established convention does not
 need repeated approval.
 
-**Complete when:** each new module and public contract has a clear owner and a
-justified shape, and each added mechanism has been compared with the relevant
-existing capabilities. Any departure from an applicable convention has a
+**Complete when:** each added or changed responsibility has a clear owner and
+a suitable location, each new module and public contract has a justified shape,
+and each added mechanism has been compared with the relevant existing
+capabilities. Any departure from an applicable convention has a
 task-specific reason. Scale this preparation to the size of the change; it need
 not become a separate document or user approval step.
 

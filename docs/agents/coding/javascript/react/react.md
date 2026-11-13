@@ -1,6 +1,12 @@
 # React
 
-Read this when writing or reviewing React code.
+Read this when organizing a React application's source tree or writing or
+reviewing React code.
+
+## Repository
+
+When organizing a React application's source tree, start with
+[repository guidance](repository/repository.md).
 
 ## JSX
 

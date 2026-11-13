@@ -71,6 +71,11 @@ conceptual levels visible through meaningful parts, such as the subject,
 its specialization, and its role. Use the language and codebase conventions to
 express those levels.
 
+Before introducing a term in a glossary or contract, or spreading a new name
+across modules, describe in one sentence what it denotes. Check that the term
+keeps that meaning wherever it appears and that each name conveys its role.
+Raise unresolved ambiguity in project vocabulary during alignment.
+
 When the subject alone leaves an object's responsibility unclear, include its
 role in the type name. Use short local names when the scope identifies the
 subject, including role names for instances.
