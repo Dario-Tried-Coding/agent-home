@@ -127,10 +127,11 @@ types.
 
 A strong TypeScript codebase keeps authored values inside the type graph.
 
-When a value is written or assembled in source code, TypeScript should be able
-to check it at the point of construction. This includes object literals, string
-literals, template literals, records, adapter payloads, persistence documents,
-network payloads, and generated-contract inputs.
+At the point where you write or assemble a value, check it against the type
+that represents its valid choices, even when the receiving API accepts a
+broader type. When the value selects an entry from a known set, derive the
+allowed values from that set. Verify that removing an entry would make a
+reference to it fail type checking.
 
 Runtime validation is for data entering from outside the type graph. It does not
 replace static checking for values authored inside the codebase.
