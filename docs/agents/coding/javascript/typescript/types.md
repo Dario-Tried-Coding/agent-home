@@ -163,8 +163,17 @@ const colorMap = `COLOR_MAP_${selectedColorMap}` satisfies WorkspaceColorMap;
 When a domain concept consists of a finite set of runtime values, define the
 values once and derive the corresponding types from them.
 
-Prefer feature or domain `specs.ts` files for finite runtime sets, domain
-registries, and their derived types.
+Put a concept's finite vocabulary and its derived types in the `specs.ts` of
+the feature or domain that owns the concept. Import that vocabulary into the
+operations and registries that use it. Keep configuration registries with the
+responsibility that decides which entries are available and how they behave.
+
+```text
+files/
+├── specs.ts      # defines the inventory types
+├── inventory.ts  # uses the types to configure the available inventory tabs
+└── client.ts     # uses the types in inventory requests
+```
 
 Keep the runtime values, tuple type, union type, and related namespace helpers
 in the same module. Use an uppercase runtime constant, a tuple type with the
@@ -181,10 +190,10 @@ export namespace ChannelType {
 }
 ```
 
-Export `Pick` inside the union's namespace, constrain its parameter to the
-union, and use `Extract<Union, Parameter>` as its result. Preserve the intended
-public or private visibility of the surrounding declarations. Names of unions
-and generic parameters are chosen by their owners.
+Export `Pick` inside the union's namespace. For scalar members, constrain its
+parameter to the union and use `Extract<Union, Parameter>` as its result.
+Preserve the intended public or private visibility of the surrounding
+declarations. Names of unions and generic parameters are chosen by their owners.
 
 Use the namespace associated with the domain type for related type-level
 utilities and constrained specializations:
@@ -197,6 +206,25 @@ type AnalysisChannelType = ChannelType.Pick<"passive" | "active">;
 
 Follow this pattern consistently rather than manually reproducing narrower
 unions downstream.
+
+When a tuple of records defines a union of entries, use the same pattern.
+Constrain `Pick` to the values of the field that identifies an entry and use
+that field in `Extract` to return the complete matching entry.
+
+```ts
+export const INVENTORY_TABS = [
+  { fileType: "FILE_LOG", label: "Log" },
+  { fileType: "FILE_REPORT", label: "Report" },
+] as const;
+
+export type INVENTORY_TABS = typeof INVENTORY_TABS;
+export type InventoryTab = INVENTORY_TABS[number];
+
+export namespace InventoryTab {
+  export type Pick<T extends InventoryTab["fileType"]> =
+    Extract<InventoryTab, { fileType: T }>;
+}
+```
 
 When a closed set mirrors an upstream schema or generated protocol, derive it from
 that contract or use a compile-time check to keep the selected values constrained

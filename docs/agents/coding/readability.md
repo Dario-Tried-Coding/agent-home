@@ -18,6 +18,12 @@ from the feature's vocabulary rather than reproducing another feature's layout.
 Choose folder depth to reveal ownership and dependencies, rather than to reach
 a preferred number of files or levels.
 
+Place declarative registries in the scope that owns which entries are available
+and how they are configured. Keep the properties that define an entry together.
+A module can contain several registries that serve the same responsibility.
+Name the module for that responsibility and each registry for the set it
+declares.
+
 When ownership changes, reassess the model, lifecycle, name, location, consumers,
 and tests together; preserving behavior alone does not justify retaining a
 layout that describes the previous ownership. For state and resource ownership,
