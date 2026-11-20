@@ -50,6 +50,18 @@ Before reaching for `useState`, `useEffect`, or `useRef`, check whether the
 state belongs in an existing store, query cache, form state, router state,
 imperative observable model, or domain service.
 
+For each behavior introduced or changed in React, identify its owner and the
+specific rendering, local interaction, DOM, or React lifecycle requirement that
+places it there. Compare handling it through that owner's existing interface
+with coordinating it in React. Apply this ownership test to effect bodies,
+event handlers, callback refs, and custom hooks alike; moving code between them
+does not establish the appropriate owner.
+
+In implementation and review, justify the chosen boundary against concrete
+alternatives. Working behavior and passing tests establish correctness, but do
+not establish why React should own the responsibility. For imperative
+integration and effect timing, follow [imperative lifecycles](imperative-lifecycles.md).
+
 ### Model State Explicitly
 
 If multiple booleans, nullable values, refs, or effects together describe one

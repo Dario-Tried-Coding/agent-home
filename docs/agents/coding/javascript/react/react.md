@@ -15,9 +15,10 @@ When writing or reviewing React rendering, including tests and fixtures, read
 
 ## State And Shape
 
-When choosing state ownership, defining or changing component props and
-forwarding, changing component shape, deciding where to define a hook, or deciding how
-React should adapt domain state to rendering, read [state and shape](state-and-shape.md).
+When implementing or reviewing behavior in React, choosing state ownership,
+defining or changing component props and forwarding, changing component shape,
+deciding where to define a hook, or deciding how React should adapt domain state
+to rendering, read [state and shape](state-and-shape.md).
 
 ## Contexts
 
@@ -26,8 +27,9 @@ hooks, read [contexts](contexts.md).
 
 ## Imperative Lifecycles
 
-When React owns a class, controller, service, subscription, timer, event
-listener, external store, hydration workflow, or disposable resource, read
+When implementing or reviewing React integration with a class, controller,
+service, subscription, timer, event listener, external store, hydration workflow,
+DOM resource, or disposable resource, or choosing effect timing, read
 [imperative lifecycles](imperative-lifecycles.md).
 
 ## Observable Cores
