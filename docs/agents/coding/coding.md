@@ -1,5 +1,11 @@
 # Coding
 
+Before implementation, reorganization, or review, follow the language routers
+for the files in scope. Read their required foundations, then follow the topic
+links whose triggers apply to the work. A router selects the required reading;
+reading the router alone does not complete that reading. Revisit the selection
+when the work introduces another language or responsibility.
+
 - For ownership, names, abstractions, control flow, or test placement, read [readability](readability.md).
 - If the code or build you are working on uses generated artifacts, read [generated artifacts](generated-artifacts.md).
 - When changing or adopting an input shared by multiple consumers, read [shared resources](shared-resources.md).

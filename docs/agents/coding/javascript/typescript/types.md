@@ -232,6 +232,18 @@ that contract or use a compile-time check to keep the selected values constraine
 to the upstream vocabulary. A closed set owned locally can use the tuple as its
 source of truth.
 
+Distinguish a runtime vocabulary from a selection within an existing model.
+Property keys, constrained member selections, boolean refinements, and phantom
+brand labels do not introduce another runtime vocabulary. Keep their relationship
+to the source model visible to TypeScript. An unconstrained string parameter does
+not establish that relationship. String template transformations can derive
+formats from existing models without independently listing their members.
+
+Configuration records can retain their inferred entry types with their registry
+when `satisfies` checks their identifying choices against an existing vocabulary.
+Keep the vocabulary that constrains those choices in its owning `specs.ts`.
+Broad annotations such as `id: string` do not provide that check.
+
 ## Use The Type System For DX
 
 Use `typeof`, `keyof`, indexed access, `Extract`, `Exclude`, mapped types,

@@ -16,6 +16,12 @@ scope and gives each link a reading trigger. Entry files link to the
 top-level topic router. Put a trigger for a specific technique in the nearest
 router that owns it.
 
+Distinguish required foundations from conditional topics. Route foundations by
+the technology or file types in scope; reading them should not depend on the
+agent first recognizing an architectural concern in the change. Use task-based
+triggers for specialized topics. Include implementation and review wherever
+both need the guidance.
+
 Use ADRs for consequential decisions and follow the owning scope's existing
 filename convention.
 

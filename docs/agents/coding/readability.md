@@ -18,6 +18,11 @@ from the feature's vocabulary rather than reproducing another feature's layout.
 Choose folder depth to reveal ownership and dependencies, rather than to reach
 a preferred number of files or levels.
 
+When a module gains a named support directory, place its implementation and
+owned contracts and tests together in that directory. Update consumers to the
+implementation's new path. A retained forwarding entrypoint should own a real
+public API boundary rather than merely preserve the previous layout.
+
 Place declarative registries in the scope that owns which entries are available
 and how they are configured. Keep the properties that define an entry together.
 A module can contain several registries that serve the same responsibility.
