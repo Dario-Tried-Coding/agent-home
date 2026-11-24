@@ -29,6 +29,7 @@ type RESOLUTIONS = typeof RESOLUTIONS;
 type Resolution = RESOLUTIONS[number];
 namespace Resolution {
   export type Pick<T extends Resolution> = Extract<Resolution, T>;
+  export type Without<T extends Resolution> = Exclude<Resolution, T>;
 }
 ```
 
@@ -188,11 +189,16 @@ export type ChannelType = CHANNEL_TYPES[number];
 
 export namespace ChannelType {
   export type Pick<T extends ChannelType> = Extract<ChannelType, T>;
+  export type Without<T extends ChannelType> = Exclude<ChannelType, T>;
 }
 ```
 
-Export `Pick` inside the union's namespace. For scalar members, constrain its
-parameter to the union and use `Extract<Union, Parameter>` as its result.
+Expose both `Pick` and `Without` inside every namespace that selects alternatives,
+including derived sets and discriminated unions, whether or not both helpers
+have consumers yet. For scalar members, constrain each selection parameter to
+the owning union. Use `Extract<Union, Parameter>` for `Pick` and
+`Exclude<Union, Parameter>` for `Without`. The constraint makes unknown selectors
+a type error instead of silently accepting them through `Exclude`.
 Preserve the intended public or private visibility of the surrounding
 declarations. Names of unions and generic parameters are chosen by their owners.
 
@@ -203,14 +209,18 @@ utilities and constrained specializations:
 type PassiveChannelType = ChannelType.Pick<"passive">;
 
 type AnalysisChannelType = ChannelType.Pick<"passive" | "active">;
+
+type NonAudioChannelType = ChannelType.Without<"audio">;
 ```
 
 Follow this pattern consistently rather than manually reproducing narrower
 unions downstream.
 
 When a tuple of records defines a union of entries, use the same pattern.
-Constrain `Pick` to the values of the field that identifies an entry and use
-that field in `Extract` to return the complete matching entry.
+Constrain both helpers to the same identifying field. Use that field in
+`Extract` and `Exclude` to return or remove complete entries. Apply this pattern
+to discriminated unions as well as record inventories; `Without` removes union
+members, not object properties.
 
 ```ts
 export const INVENTORY_TABS = [
@@ -224,8 +234,16 @@ export type InventoryTab = INVENTORY_TABS[number];
 export namespace InventoryTab {
   export type Pick<T extends InventoryTab["fileType"]> =
     Extract<InventoryTab, { fileType: T }>;
+  export type Without<T extends InventoryTab["fileType"]> =
+    Exclude<InventoryTab, { fileType: T }>;
 }
 ```
+
+For generic owners, preserve their model parameters and constraints in both
+helpers, then constrain the selection parameter to that instantiated model.
+Keep each helper exported and preserve the owning model's visibility. Update
+generator templates for generated models. Providing the pair does not require
+rewriting existing consumers to use it.
 
 When a closed set mirrors an upstream schema or generated protocol, derive it from
 that contract or use a compile-time check to keep the selected values constrained
