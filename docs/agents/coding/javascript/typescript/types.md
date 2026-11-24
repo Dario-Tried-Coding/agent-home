@@ -244,6 +244,23 @@ when `satisfies` checks their identifying choices against an existing vocabulary
 Keep the vocabulary that constrains those choices in its owning `specs.ts`.
 Broad annotations such as `id: string` do not provide that check.
 
+### Test Types And Scenarios
+
+Tests import contracts from the production owner and use constrained selections
+for narrower inputs. For example, a ruler fixture can accept `Ruler["axis"]`
+rather than independently defining its axis vocabulary. Keep `specs.ts` out of
+`tests/` at every nesting level; a test directory does not own the domain model.
+
+Keep scenario options local to their fixture. Express simulated states through
+the real model's types instead of inventing labels that translate back to those
+states. Use optional inputs when absence already expresses the scenario, such
+as creating an entity without an existing entity's entry mode.
+
+When the test itself requires an artificial vocabulary or an independent
+expected type, keep it local and use an individual, justified lint exception
+at that declaration. This exception preserves the purpose of the test; it does
+not exempt test directories or move fixture details into production catalogues.
+
 ## Use The Type System For DX
 
 Use `typeof`, `keyof`, indexed access, `Extract`, `Exclude`, mapped types,
