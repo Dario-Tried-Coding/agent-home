@@ -42,6 +42,20 @@ Describe the recurring requirements and cite a reference implementation. Keep
 feature-specific decisions with their spec or ADR. Use the type system or a
 focused automated check for requirements that can be verified mechanically.
 
+When adding, changing, or reviewing a deterministic check that enforces a coding
+convention, align its agent-facing guidance in the same change. Cover the
+required behavior, ownership, and permitted exceptions in the narrowest owning
+guide, and make that guide reachable from the applicable entry files with a
+trigger covering implementation and review. Link to configuration and rule
+sources for mechanical details rather than duplicating their implementation.
+
+Compare the guide, effective check configuration, and regression coverage before
+finishing: they must agree on what is required, where it applies, and which
+exceptions are allowed. Identify existing coverage or add focused cases for a
+changed enforcement boundary. If the guidance needs no edit, verify that it
+already expresses the changed behavior. Changes that relax enforcement follow
+[preserve enforced standards](../../CODING_STANDARDS.md#preserve-enforced-standards).
+
 ## Explain Structure And Flow
 
 Use `writing-for-agents` to organize agent-facing guidance and make its
